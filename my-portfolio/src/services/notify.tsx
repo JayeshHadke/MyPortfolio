@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import emailjs from "emailjs-com";
+import { error } from "console";
 
 export default function NotifyAccess() {
   useEffect(() => {
@@ -16,26 +17,62 @@ export default function NotifyAccess() {
     fetch("https://ipapi.co/json/")
       .then((res) => res.json())
       .then((data) => {
-        const message = `
-📍 Location: ${data.city}, ${data.country_name}
-🧠 IP: ${data.ip}
-🌐 Browser: ${browser} on ${os}
-🗣️ Language: ${language}
-🕒 Time: ${time} on ${date}
-        `.trim();
+        navigator.geolocation.getCurrentPosition(
+          (pos) => {
+            fetch(
+              `https://nominatim.openstreetmap.org/reverse?lat=${pos.coords.latitude}&lon=${pos.coords.longitude}&format=json`
+            )
+              .then((res) => res.json())
+              .then((locationData) => {
+                const message = `📍 Location: ${data.city}, ${data.country_name}
+                        🧠 IP: ${data.ip}
+                        🌐 Browser: ${browser} on ${os}
+                        🗣️ Language: ${language}
+                        🕒 Time: ${time} on ${date}
+                          Network ORG: ${data.org}
+                          Region: ${data.region}  
+                          Location: ${locationData.display_name || "N/A"}
+                          latitude: ${locationData.lat || "N/A"},
+                          longitude: ${locationData.lon || "N/A"}`.trim();
 
-        // Send to EmailJS
-        emailjs
-          .send(
-            "service_h03t7ru",
-            "template_4x21o89",
-            { message }, // single variable
-            "QKMpRVnI3_lJPUYtR"
-          )
-          .then(() => {
-            sessionStorage.setItem("emailSent", "true");
-            console.log("✅ Admin notified via email");
-          });
+                emailjs
+                  .send(
+                    process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+                    process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+                    { message }, // single variable
+                    process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
+                  )
+                  .then(() => {
+                    sessionStorage.setItem("emailSent", "true");
+                    console.log(
+                      "✅ Admin notified via email with accurate location"
+                    );
+                  });
+              });
+          },
+          (error) => {
+            const message = `📍 Location: ${data.city}, ${data.country_name}
+                        🧠 IP: ${data.ip}
+                        🌐 Browser: ${browser} on ${os}
+                        🗣️ Language: ${language}
+                        🕒 Time: ${time} on ${date}
+                          Network ORG: ${data.org}
+                          Postal: ${data.postal}
+                          Region: ${data.region}  `.trim();
+
+            emailjs
+              .send(
+                "service_h03t7ru",
+                "template_4x21o89",
+                { message }, // single variable
+                "QKMpRVnI3_lJPUYtR"
+              )
+              .then(() => {
+                sessionStorage.setItem("emailSent", "true");
+                console.log("✅ Admin notified via email partial location");
+              });
+          }
+        );
       });
   }, []);
 
