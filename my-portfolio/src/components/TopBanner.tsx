@@ -59,7 +59,7 @@ export default function AccessWarningBanner() {
       }`}
     >
       <span className="font-mono text-xs">
-        ⚠️ Page admin is notified that someone is trying to access a page.
+        ⚠️ Welcome curious developer! We’re logging this visit just for fun (no data saved).
       </span>
     </div>
   );
