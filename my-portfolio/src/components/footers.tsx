@@ -108,7 +108,6 @@ export default function Taskbar() {
             iconUrl="https://upload.wikimedia.org/wikipedia/commons/9/9a/Visual_Studio_Code_1.35_icon.svg"
             description="Open VS Code website"
             link="https://code.visualstudio.com/"
-            selected={true}
           />
           <AppButton
             label="Visual Studio"
@@ -119,11 +118,11 @@ export default function Taskbar() {
             iconUrl="https://upload.wikimedia.org/wikipedia/commons/5/51/Android_Studio_Logo_2024.svg"
           />
           <AppButton
-            label="SSMS"
+            label="SQL Server Management Studio"
             iconUrl="https://upload.wikimedia.org/wikipedia/en/b/bc/MSSQL_SSMS_21_icon.png"
           />
           <AppButton
-            label="MongoDB"
+            label="Studio 3T - MongoDB"
             iconUrl="https://th.bing.com/th/id/ODF.w5r18xkM0KdGrXesKXdLTg?w=32&h=32&qlt=90&pcl=fffffa&o=6&cb=thwsc4&pid=1.2"
           />
           <AppButton
@@ -133,6 +132,10 @@ export default function Taskbar() {
           <AppButton
             label="Chrome"
             iconUrl="https://upload.wikimedia.org/wikipedia/commons/e/e1/Google_Chrome_icon_%28February_2022%29.svg"
+          />
+          <AppButton
+            label="Terminal"
+            iconUrl="https://upload.wikimedia.org/wikipedia/en/e/ef/Command_prompt_icon_%28windows%29.png"
           />
         </div>
       </div>
