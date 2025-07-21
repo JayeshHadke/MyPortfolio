@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-
 const tabs = ["Intro", "Experience", "Projects", "Education", "Certificates"];
 
 export default function CmdWindowPortfolio() {
@@ -31,8 +30,8 @@ export default function CmdWindowPortfolio() {
     if (el) el.scrollIntoView({ behavior: "smooth" });
   };
 
-  const renderPrompt = (text) => (
-    <div className="mb-4">
+  const renderPromptSticky = (text) => (
+    <div className="sticky top-20 bg-black z-10 py-2">
       <p className="text-green-400">
         <span className="text-white">C:\Users\Jayesh&gt;</span> {text}
       </p>
@@ -45,7 +44,7 @@ export default function CmdWindowPortfolio() {
       <div className="sticky top-0 z-50">
         <div className="bg-zinc-900 border-b border-zinc-700 flex justify-between items-center px-4 py-2">
           <div className="w-12"></div>
-          <div className="text-white text-sm">CMD.EXE</div>
+          <div className="text-white text-sm">My_Fortfolio.exe</div>
           <div className="flex space-x-2">
             <div className="w-3 h-3 rounded-full bg-green-500"></div>
             <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
@@ -72,37 +71,35 @@ export default function CmdWindowPortfolio() {
       </div>
 
       {/* Sections */}
-      <div className="space-y-32 px-6 py-8">
+      <div className="space-y-32 px-16 py-12">
         <section
           ref={(el) => (sectionsRef.current["Intro"] = el)}
           data-section="Intro"
-          className="min-h-screen flex items-center justify-between border-b border-zinc-700"
+          className="min-h-screen flex flex-col border-b border-zinc-700 scroll-mt-32"
         >
-          <div className="w-full">
-            {renderPrompt("about-me")}
-            <div className="flex justify-between">
-              <div className="max-w-md">
-                <h1 className="text-4xl font-bold">Hi, I'm [Your Name]</h1>
-                <p className="mt-4">
-                  I’m a full-stack developer who builds terminal-inspired
-                  portfolios ✨
-                </p>
-              </div>
-              <img
-                src="/your-image.jpg"
-                alt="Your face"
-                className="w-40 h-40 rounded border border-green-400"
-              />
+          {renderPromptSticky("about-me")}
+          <div className="flex flex-1 items-center justify-between">
+            <div className="max-w-md">
+              <h1 className="text-4xl font-bold">Hi, I'm [Your Name]</h1>
+              <p className="mt-4">
+                I’m a full-stack developer who builds terminal-inspired
+                portfolios ✨
+              </p>
             </div>
+            <img
+              src="./profilePhoto.png"
+              alt="Your face"
+              className="w-90 h-90 rounded border border-green-400"
+            />
           </div>
         </section>
 
         <section
           ref={(el) => (sectionsRef.current["Experience"] = el)}
           data-section="Experience"
-          className="min-h-screen border-b border-zinc-700"
+          className="min-h-screen border-b border-zinc-700 scroll-mt-32"
         >
-          {renderPrompt("experience")}
+          {renderPromptSticky("experience")}
           <h2 className="text-2xl mb-4">Professional Experience</h2>
           <ul className="list-disc ml-5 space-y-2">
             <li>
@@ -123,9 +120,9 @@ export default function CmdWindowPortfolio() {
         <section
           ref={(el) => (sectionsRef.current["Projects"] = el)}
           data-section="Projects"
-          className="min-h-screen border-b border-zinc-700"
+          className="min-h-screen border-b border-zinc-700 scroll-mt-32"
         >
-          {renderPrompt("projects")}
+          {renderPromptSticky("projects")}
           <h2 className="text-2xl mb-4">Projects</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="bg-zinc-800 border border-zinc-600 p-4 rounded">
@@ -146,9 +143,9 @@ export default function CmdWindowPortfolio() {
         <section
           ref={(el) => (sectionsRef.current["Education"] = el)}
           data-section="Education"
-          className="min-h-screen border-b border-zinc-700"
+          className="min-h-screen border-b border-zinc-700 scroll-mt-32"
         >
-          {renderPrompt("education")}
+          {renderPromptSticky("education")}
           <h2 className="text-2xl mb-4">Education</h2>
           <ul className="list-disc ml-5">
             <li>B.Tech – [University Name]</li>
@@ -160,9 +157,9 @@ export default function CmdWindowPortfolio() {
         <section
           ref={(el) => (sectionsRef.current["Certificates"] = el)}
           data-section="Certificates"
-          className="min-h-screen"
+          className="min-h-screen border-b border-zinc-700 scroll-mt-32"
         >
-          {renderPrompt("certificates")}
+          {renderPromptSticky("certificates")}
           <h2 className="text-2xl mb-4">Certificates</h2>
           <ul className="list-disc ml-5 space-y-2">
             <li>AWS Certified Solutions Architect</li>

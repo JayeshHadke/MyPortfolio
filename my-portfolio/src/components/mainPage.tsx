@@ -5,5 +5,9 @@ import CommandBlock from "./commandBlock";
 import CmdWindowPortfolio from "./cmdContainer";
 
 export default function MainPage() {
-  return <CmdWindowPortfolio />;
+  return (
+    // <div className="m-4 bg-blue sticky top-16">
+      <CmdWindowPortfolio />
+    // </div>
+  );
 }
