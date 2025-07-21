@@ -41,7 +41,7 @@ export default function AccessWarningBanner() {
     return { browser: "Unknown", os: getOS(ua) };
   };
 
-  const getOS = (ua) => {
+  const getOS = (ua: string) => {
     if (ua.includes("Windows")) return "Windows";
     if (ua.includes("Mac")) return "macOS";
     if (ua.includes("Linux")) return "Linux";

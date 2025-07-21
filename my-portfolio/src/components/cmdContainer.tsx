@@ -3,7 +3,7 @@ const tabs = ["Intro", "Experience", "Projects", "Education", "Certificates"];
 
 export default function CmdWindowPortfolio() {
   const [activeTab, setActiveTab] = useState("Intro");
-  const sectionsRef = useRef({});
+  const sectionsRef = useRef<Record<string, HTMLElement | null>>({});
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -11,7 +11,7 @@ export default function CmdWindowPortfolio() {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             const name = entry.target.getAttribute("data-section");
-            setActiveTab(name);
+            if (name) setActiveTab(name);
           }
         });
       },
@@ -25,12 +25,12 @@ export default function CmdWindowPortfolio() {
     return () => observer.disconnect();
   }, []);
 
-  const scrollTo = (tab) => {
+  const scrollTo = (tab: string) => {
     const el = sectionsRef.current[tab];
     if (el) el.scrollIntoView({ behavior: "smooth" });
   };
 
-  const renderPromptSticky = (text) => (
+  const renderPromptSticky = (text: string) => (
     <div className="sticky top-20 bg-black z-10 py-2">
       <p className="text-green-400">
         <span className="text-white">C:\Users\Jayesh&gt;</span> {text}
@@ -73,7 +73,7 @@ export default function CmdWindowPortfolio() {
       {/* Sections */}
       <div className="space-y-32 px-16 py-12">
         <section
-          ref={(el) => (sectionsRef.current["Intro"] = el)}
+          ref={(el) => { sectionsRef.current["Intro"] = el; }}
           data-section="Intro"
           className="min-h-screen flex flex-col border-b border-zinc-700 scroll-mt-32"
         >
@@ -95,7 +95,7 @@ export default function CmdWindowPortfolio() {
         </section>
 
         <section
-          ref={(el) => (sectionsRef.current["Experience"] = el)}
+          ref={(el) => { sectionsRef.current["Experience"] = el; }}
           data-section="Experience"
           className="min-h-screen border-b border-zinc-700 scroll-mt-32"
         >
@@ -118,7 +118,7 @@ export default function CmdWindowPortfolio() {
         </section>
 
         <section
-          ref={(el) => (sectionsRef.current["Projects"] = el)}
+          ref={(el) => { sectionsRef.current["Projects"] = el; }}
           data-section="Projects"
           className="min-h-screen border-b border-zinc-700 scroll-mt-32"
         >
@@ -141,7 +141,7 @@ export default function CmdWindowPortfolio() {
         </section>
 
         <section
-          ref={(el) => (sectionsRef.current["Education"] = el)}
+          ref={(el) => { sectionsRef.current["Education"] = el; }}
           data-section="Education"
           className="min-h-screen border-b border-zinc-700 scroll-mt-32"
         >
@@ -155,7 +155,7 @@ export default function CmdWindowPortfolio() {
         </section>
 
         <section
-          ref={(el) => (sectionsRef.current["Certificates"] = el)}
+          ref={(el) => { sectionsRef.current["Certificates"] = el; }}
           data-section="Certificates"
           className="min-h-screen border-b border-zinc-700 scroll-mt-32"
         >
