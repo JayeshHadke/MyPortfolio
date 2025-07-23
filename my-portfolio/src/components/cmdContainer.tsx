@@ -77,10 +77,11 @@ export default function CmdWindowPortfolio() {
           data-section="Intro"
           className="min-h-screen flex flex-col border-b border-zinc-700 scroll-mt-32"
         >
-          {renderPromptSticky("about-me")}
+          {renderPromptSticky("systeminfo --profile --overview")}
           <div className="flex flex-1 items-center justify-between">
             <div className="max-w-md">
-              <h1 className="text-4xl font-bold">Hi, I am [Your Name]</h1>
+
+              <h1 className="text-4xl font-bold">Hi, I am Jayesh Hadke</h1>
               <p className="mt-4">
                 I’m a full-stack developer who builds terminal-inspired
                 portfolios ✨

@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <div>
       {/* {NotifyAccess()} */}
-      <AccessWarningBanner />
+      {/* <AccessWarningBanner /> */}
       <MainPage />
       <Footers />
     </div>
