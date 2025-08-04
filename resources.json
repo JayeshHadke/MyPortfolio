@@ -1,3 +1,23 @@
 {
-    "name": "resources"
+    "sectionDetails": {
+        "title": "Resources",
+        "description": "A collection of useful resources for learning and development.",
+        "resources": [
+            {
+                "name": "FreeCodeCamp",
+                "url": "https://www.freecodecamp.org",
+                "type": "Online Learning Platform"
+            },
+            {
+                "name": "MDN Web Docs",
+                "url": "https://developer.mozilla.org",
+                "type": "Documentation"
+            },
+            {
+                "name": "Stack Overflow",
+                "url": "https://stackoverflow.com",
+                "type": "Q&A Community"
+            }
+        ]
+    }
 }
