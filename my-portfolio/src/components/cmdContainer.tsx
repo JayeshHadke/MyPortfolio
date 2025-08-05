@@ -1,5 +1,5 @@
 import sectionData from "@/services/getSectionData";
-import path from "path";
+import { getTotalDuration } from "@/services/getTotalYears";
 import { useEffect, useRef, useState } from "react";
 const tabs = [
   "Intro",
@@ -32,6 +32,8 @@ export default function CmdWindowPortfolio() {
   const [experienceDetails, setExperienceDetails] =
     useState<experienceType | null>(null);
 
+  const [totalExperience, setTotalExperience] = useState<string>("");
+
   const [activeTab, setActiveTab] = useState("Intro");
   const sectionsRef = useRef<Record<string, HTMLElement | null>>({});
   useEffect(() => {
@@ -58,8 +60,11 @@ export default function CmdWindowPortfolio() {
         .filter((line: string) => line.trim() !== "")
         .map((line: string) => line.trim()),
     }));
+    const totalExperienceDuration = getTotalDuration(
+      companies.map((company) => company.duration)
+    );
+    setTotalExperience(totalExperienceDuration);
     setExperienceDetails({ companies });
-    // setExperienceDetails({ companies: sectionData["data"]["experience"] });
 
     Object.values(sectionsRef.current).forEach((el) => {
       if (el) observer.observe(el);
@@ -71,7 +76,8 @@ export default function CmdWindowPortfolio() {
   const scrollTo = (tab: string) => {
     if (tab === "Downlaod CV") {
       // download CV from a uri
-      const cvUrl = ""
+      const cvUrl =
+        "https://github.com/JayeshHadke/MyPortfolio/raw/refs/heads/master/my-portfolio/public/Jayesh_Hadke_CV.pdf";
       const link = document.createElement("a");
       link.href = cvUrl;
       link.download = "JayeshCV.pdf";
@@ -134,15 +140,17 @@ export default function CmdWindowPortfolio() {
           className="min-h-[80vh] flex flex-col border-b border-zinc-700 scroll-mt-32"
         >
           {renderPromptSticky("systeminfo --profile --overview")}
-          <div className="flex flex-1 items-center justify-between">
+          <div className="flex flex-1 items-center justify-between mr-50">
             <div className="max-w-md">
               <h1 className="text-4xl font-bold">{overviewDetails?.title}</h1>
-              <p className="mt-4">{overviewDetails?.description}</p>
+              <p className="mt-4 text-zinc-200">
+                {overviewDetails?.description}
+              </p>
             </div>
             <img
               src="./profilePhoto.png"
               alt="Your face"
-              className="w-90 h-90 rounded border border-green-400"
+              className="w-110 h-120 rounded border border-green-400 object-cover"
             />
           </div>
         </section>
@@ -154,8 +162,11 @@ export default function CmdWindowPortfolio() {
           data-section="Experience"
           className="min-h-[80vh] border-b border-zinc-700 scroll-mt-32"
         >
-          {renderPromptSticky("experience")}
-          <h2 className="text-2xl mb-4">Professional Experience</h2>
+          {renderPromptSticky("systeminfo --profile --experience")}
+          <h2 className="text-2xl mb-4">
+            Professional Experience
+            <span className="text-white"> ({totalExperience})</span>
+          </h2>
           <ul className="list-disc ml-5 space-y-2">
             {experienceDetails?.companies.map((company, index) => (
               <li key={index}>
@@ -186,7 +197,7 @@ export default function CmdWindowPortfolio() {
           data-section="Projects"
           className="min-h-[80vh] border-b border-zinc-700 scroll-mt-32"
         >
-          {renderPromptSticky("projects")}
+          {renderPromptSticky("systeminfo --profile --projects")}
           <h2 className="text-2xl mb-4">Projects</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="bg-zinc-800 border border-zinc-600 p-4 rounded">
