@@ -1,10 +1,39 @@
+import sectionData from "@/services/getSectionData";
+import path from "path";
 import { useEffect, useRef, useState } from "react";
-const tabs = ["Intro", "Experience", "Projects", "Education", "Certificates"];
+const tabs = [
+  "Intro",
+  "Experience",
+  "Projects",
+  "Education",
+  "Certificates",
+  "Downlaod CV",
+];
 
 export default function CmdWindowPortfolio() {
+  type overviewType = {
+    title: string;
+    description: string;
+    image: string;
+  };
+  const [overviewDetails, setOverviewDetails] = useState<overviewType | null>(
+    null
+  );
+  type companyDetailsType = {
+    designation: string;
+    company: string;
+    duration: string;
+    description: string[];
+  };
+  type experienceType = {
+    companies: companyDetailsType[];
+  };
+
+  const [experienceDetails, setExperienceDetails] =
+    useState<experienceType | null>(null);
+
   const [activeTab, setActiveTab] = useState("Intro");
   const sectionsRef = useRef<Record<string, HTMLElement | null>>({});
-
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -18,6 +47,20 @@ export default function CmdWindowPortfolio() {
       { threshold: 0.5 }
     );
 
+    console.log("sectionData", sectionData["data"]);
+    setOverviewDetails(sectionData["data"]["overview"]);
+    let companies = sectionData["data"]["experience"].map((company: any) => ({
+      company: company.company,
+      designation: company.designation,
+      duration: company.duration,
+      description: company.description
+        .split("\n")
+        .filter((line: string) => line.trim() !== "")
+        .map((line: string) => line.trim()),
+    }));
+    setExperienceDetails({ companies });
+    // setExperienceDetails({ companies: sectionData["data"]["experience"] });
+
     Object.values(sectionsRef.current).forEach((el) => {
       if (el) observer.observe(el);
     });
@@ -26,6 +69,17 @@ export default function CmdWindowPortfolio() {
   }, []);
 
   const scrollTo = (tab: string) => {
+    if (tab === "Downlaod CV") {
+      // download CV from a uri
+      const cvUrl = ""
+      const link = document.createElement("a");
+      link.href = cvUrl;
+      link.download = "JayeshCV.pdf";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      return;
+    }
     const el = sectionsRef.current[tab];
     if (el) el.scrollIntoView({ behavior: "smooth" });
   };
@@ -73,19 +127,17 @@ export default function CmdWindowPortfolio() {
       {/* Sections */}
       <div className="space-y-32 px-16 py-12">
         <section
-          ref={(el) => { sectionsRef.current["Intro"] = el; }}
+          ref={(el) => {
+            sectionsRef.current["Intro"] = el;
+          }}
           data-section="Intro"
-          className="min-h-screen flex flex-col border-b border-zinc-700 scroll-mt-32"
+          className="min-h-[80vh] flex flex-col border-b border-zinc-700 scroll-mt-32"
         >
           {renderPromptSticky("systeminfo --profile --overview")}
           <div className="flex flex-1 items-center justify-between">
             <div className="max-w-md">
-
-              <h1 className="text-4xl font-bold">Hi, I am Jayesh Hadke</h1>
-              <p className="mt-4">
-                I’m a full-stack developer who builds terminal-inspired
-                portfolios ✨
-              </p>
+              <h1 className="text-4xl font-bold">{overviewDetails?.title}</h1>
+              <p className="mt-4">{overviewDetails?.description}</p>
             </div>
             <img
               src="./profilePhoto.png"
@@ -96,32 +148,43 @@ export default function CmdWindowPortfolio() {
         </section>
 
         <section
-          ref={(el) => { sectionsRef.current["Experience"] = el; }}
+          ref={(el) => {
+            sectionsRef.current["Experience"] = el;
+          }}
           data-section="Experience"
-          className="min-h-screen border-b border-zinc-700 scroll-mt-32"
+          className="min-h-[80vh] border-b border-zinc-700 scroll-mt-32"
         >
           {renderPromptSticky("experience")}
           <h2 className="text-2xl mb-4">Professional Experience</h2>
           <ul className="list-disc ml-5 space-y-2">
-            <li>
-              Software Engineer at{" "}
-              <a href="#" className="underline text-blue-400">
-                Company A
-              </a>
-            </li>
-            <li>
-              Intern at{" "}
-              <a href="#" className="underline text-blue-400">
-                Company B
-              </a>
-            </li>
+            {experienceDetails?.companies.map((company, index) => (
+              <li key={index}>
+                <span className="font-bold text-lg">
+                  {company.designation}
+                  <span className="text-white"> @ </span>
+                  <span className="underline text-blue-400">
+                    {company.company}
+                  </span>
+                </span>
+                <br />
+                <p className="text-sm text-zinc-100">{company.duration}</p>
+                {Array.isArray(company.description) &&
+                  company.description.map((element, idx) => (
+                    <p key={idx} className="text-sm text-zinc-200">
+                      {element}
+                    </p>
+                  ))}
+              </li>
+            ))}
           </ul>
         </section>
 
         <section
-          ref={(el) => { sectionsRef.current["Projects"] = el; }}
+          ref={(el) => {
+            sectionsRef.current["Projects"] = el;
+          }}
           data-section="Projects"
-          className="min-h-screen border-b border-zinc-700 scroll-mt-32"
+          className="min-h-[80vh] border-b border-zinc-700 scroll-mt-32"
         >
           {renderPromptSticky("projects")}
           <h2 className="text-2xl mb-4">Projects</h2>
@@ -142,9 +205,11 @@ export default function CmdWindowPortfolio() {
         </section>
 
         <section
-          ref={(el) => { sectionsRef.current["Education"] = el; }}
+          ref={(el) => {
+            sectionsRef.current["Education"] = el;
+          }}
           data-section="Education"
-          className="min-h-screen border-b border-zinc-700 scroll-mt-32"
+          className="min-h-[80vh] border-b border-zinc-700 scroll-mt-32"
         >
           {renderPromptSticky("education")}
           <h2 className="text-2xl mb-4">Education</h2>
@@ -156,9 +221,11 @@ export default function CmdWindowPortfolio() {
         </section>
 
         <section
-          ref={(el) => { sectionsRef.current["Certificates"] = el; }}
+          ref={(el) => {
+            sectionsRef.current["Certificates"] = el;
+          }}
           data-section="Certificates"
-          className="min-h-screen border-b border-zinc-700 scroll-mt-32"
+          className="min-h-[80vh] border-b border-zinc-700 scroll-mt-32"
         >
           {renderPromptSticky("certificates")}
           <h2 className="text-2xl mb-4">Certificates</h2>

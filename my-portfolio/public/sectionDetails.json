@@ -1,0 +1,27 @@
+{
+  "overview": {
+    "title": "Hi, I am Jayesh Hadke",
+    "description": "I’m a full-stack developer who builds terminal-inspired portfolios ✨",
+    "image": ""
+  },
+  "experience": [
+    {
+      "designation": "Software Engineer",
+      "company": "GEP Worldwide",
+      "duration": "Aug 2023 - Present",
+      "description": "• Designed, developed, and deployed 10+ new features in an enterprise system using ASP.NET Core, .NET Core, and Nodejs, enhancing system functionality and user experience.\n• Performed root cause analysis (RCA) and debugging to resolve critical system errors, improving application stability and performance.\n• Monitored and optimized application performance using New Relic (API traces, microservices monitoring), Kibana (ElasticSearch queries), and Kusto (logging), ensuring high availability and seamless operation.\n• Led end-to-end release cycles, handling QC, UAT, and production deployments via Azure DevOps Pipelines, while managing client support and feature development concurrently."
+    },
+    {
+      "designation": "Android Developer(Freelance)",
+      "company": "Caarya Innovative Solutions",
+      "duration": "May 2023 - Jul 2023",
+      "description": "Contributed to an Electronic Logging Device (ELD) project for the Canadian government, building a mobile app that integrates with the ELD system.\n• Strengthened backend development skills using the Model-View-Controller (MVC) architecture for improved scalability and maintainability."
+    },
+    {
+      "designation": "Android Developer(Freelance)",
+      "company": "Focus Bear",
+      "duration": "Nov 2022 - Jul 2023",
+      "description": "• Developed a gesture detection algorithm using ML Kit for an Android app integrating with Unity, enhancing user interaction.\n• Gained experience in the Software Development Life Cycle (SDLC), project management, and collaboration using GitHub for version control."
+    }
+  ]
+}
