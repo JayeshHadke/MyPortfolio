@@ -51,7 +51,14 @@ export default function CmdWindowPortfolio() {
 
     console.log("sectionData", sectionData["data"]);
     setOverviewDetails(sectionData["data"]["overview"]);
-    let companies = sectionData["data"]["experience"].map((company: any) => ({
+    const companies = (
+      sectionData["data"]["experience"] as {
+        company: string;
+        designation: string;
+        duration: string;
+        description: string;
+      }[]
+    ).map((company) => ({
       company: company.company,
       designation: company.designation,
       duration: company.duration,
