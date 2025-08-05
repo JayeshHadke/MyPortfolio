@@ -1,7 +1,7 @@
 {
   "overview": {
     "title": "Hi, I am Jayesh Hadke",
-    "description": "I am a Software Engineer with a passion for building innovative solutions. I specialize in full-stack development, focusing on creating efficient and scalable applications. My expertise includes ASP.NET Core, Node.js, and Android development, with a strong emphasis on user experience and performance optimization.",
+    "description": "I am a Software Engineer with a passion for building innovative solutions. I specialize in full-stack development, focusing on creating efficient and scalable applications. My expertise includes ASP.NET Core, Node.js, and Android development, with a strong emphasis on user experience and performance optimization. I am also working on AI-related projects, exploring the integration of machine learning and natural language processing into applications.",
     "image": ""
   },
   "experience": [
@@ -23,5 +23,31 @@
       "duration": "Nov 2022 - Jul 2023",
       "description": "• Developed a gesture detection algorithm using ML Kit for an Android app integrating with Unity, enhancing user interaction.\n• Gained experience in the Software Development Life Cycle (SDLC), project management, and collaboration using GitHub for version control."
     }
+  ],
+  "skills": [
+    { "name": "ReactJS", "icon": "/icons/reactjs.svg" },
+    { "name": "NextJS", "icon": "/icons/nextjs.svg" },
+    { "name": "TypeScript", "icon": "/icons/typescript.svg" },
+    { "name": "Tailwind CSS", "icon": "/icons/tailwind.svg" },
+    { "name": "Motion", "icon": "/icons/motion.svg" },
+    { "name": "Sanity", "icon": "/icons/sanity.svg" },
+    { "name": "Contentful", "icon": "/icons/contentful.svg" },
+    { "name": "NodeJS", "icon": "/icons/nodejs.svg" },
+    { "name": "ExpressJS", "icon": "/icons/express.svg" },
+    { "name": "PostgreSQL", "icon": "/icons/postgresql.svg" },
+    { "name": "MongoDB", "icon": "/icons/mongodb.svg" },
+    { "name": "Prisma", "icon": "/icons/prisma.svg" },
+    { "name": "Zustand", "icon": "/icons/zustand.svg" },
+    { "name": "Zod", "icon": "/icons/zod.svg" },
+    { "name": "pnpm", "icon": "/icons/pnpm.svg" },
+    { "name": "Bun", "icon": "/icons/bun.svg" },
+    { "name": "Git", "icon": "/icons/git.svg" },
+    { "name": "GitHub", "icon": "/icons/github.svg" },
+    { "name": "Vercel", "icon": "/icons/vercel.svg" },
+    { "name": "AWS", "icon": "/icons/aws.svg" },
+    { "name": "Docker", "icon": "/icons/docker.svg" },
+    { "name": "Expo", "icon": "/icons/expo.svg" },
+    { "name": "Clerk", "icon": "/icons/clerk.svg" },
+    { "name": "Linux", "icon": "/icons/linux.svg" }
   ]
 }
