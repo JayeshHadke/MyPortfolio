@@ -5,12 +5,13 @@ const tabs = [
   "Intro",
   "Experience",
   "Projects",
-  "Education",
-  "Certificates",
-  "Downlaod CV",
+  "Skills",
+  "Connect",
+  "Download CV",
 ];
 
 export default function CmdWindowPortfolio() {
+  // overwiew details
   type overviewType = {
     title: string;
     description: string;
@@ -19,6 +20,8 @@ export default function CmdWindowPortfolio() {
   const [overviewDetails, setOverviewDetails] = useState<overviewType | null>(
     null
   );
+
+  // experience details
   type companyDetailsType = {
     designation: string;
     company: string;
@@ -34,9 +37,19 @@ export default function CmdWindowPortfolio() {
 
   const [totalExperience, setTotalExperience] = useState<string>("");
 
+  // projects details
+  
+  // skills details
+  type skillType = {
+    name: string;
+    icon: string;
+  };
+  const [skillsDetails, setSkillsDetails] = useState<skillType[]>([]);
+
   const [activeTab, setActiveTab] = useState("Intro");
   const sectionsRef = useRef<Record<string, HTMLElement | null>>({});
   useEffect(() => {
+    
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -49,8 +62,10 @@ export default function CmdWindowPortfolio() {
       { threshold: 0.5 }
     );
 
-    console.log("sectionData", sectionData["data"]);
+    // overview details
     setOverviewDetails(sectionData["data"]["overview"]);
+
+    // experience details
     const companies = (
       sectionData["data"]["experience"] as {
         company: string;
@@ -73,6 +88,13 @@ export default function CmdWindowPortfolio() {
     setTotalExperience(totalExperienceDuration);
     setExperienceDetails({ companies });
 
+    // skills details
+    const skills = sectionData["data"]["skills"].map((skill: skillType) => ({
+      name: skill.name,
+      icon: skill.icon,
+    }));
+    setSkillsDetails(skills);
+
     Object.values(sectionsRef.current).forEach((el) => {
       if (el) observer.observe(el);
     });
@@ -81,7 +103,7 @@ export default function CmdWindowPortfolio() {
   }, []);
 
   const scrollTo = (tab: string) => {
-    if (tab === "Downlaod CV") {
+    if (tab === "Download CV") {
       // download CV from a uri
       const cvUrl =
         "https://github.com/JayeshHadke/MyPortfolio/raw/refs/heads/master/my-portfolio/public/Jayesh_Hadke_CV.pdf";
@@ -147,8 +169,8 @@ export default function CmdWindowPortfolio() {
           className="min-h-[80vh] flex flex-col border-b border-zinc-700 scroll-mt-32"
         >
           {renderPromptSticky("systeminfo --profile --overview")}
-          <div className="flex flex-1 items-center justify-between mr-50">
-            <div className="max-w-md">
+          <div className="flex flex-1 items-center justify-between mr-[4vw]">
+            <div className="max-w-[50vw]">
               <h1 className="text-4xl font-bold">{overviewDetails?.title}</h1>
               <p className="mt-4 text-zinc-200">
                 {overviewDetails?.description}
@@ -157,7 +179,7 @@ export default function CmdWindowPortfolio() {
             <img
               src="./profilePhoto.png"
               alt="Your face"
-              className="w-110 h-120 rounded border border-green-400 object-cover"
+              className="w-[25vw] h-[55vh] rounded border border-green-400 object-cover"
             />
           </div>
         </section>
@@ -224,21 +246,31 @@ export default function CmdWindowPortfolio() {
 
         <section
           ref={(el) => {
-            sectionsRef.current["Education"] = el;
+            sectionsRef.current["Skills"] = el;
           }}
-          data-section="Education"
+          data-section="Skills"
           className="min-h-[80vh] border-b border-zinc-700 scroll-mt-32"
         >
-          {renderPromptSticky("education")}
-          <h2 className="text-2xl mb-4">Education</h2>
-          <ul className="list-disc ml-5">
-            <li>B.Tech – [University Name]</li>
-            <li>12th – [School Name]</li>
-            <li>10th – [School Name]</li>
-          </ul>
+          {renderPromptSticky("systeminfo --profile --skills")}
+          <h2 className="text-2xl mb-4">Skills</h2>
+          <div className="flex flex-wrap gap-x-4 gap-y-8">
+            {skillsDetails.map((skill) => (
+              <div
+                key={skill.name}
+                className="inline-flex items-center gap-2 px-3 py-1.5 border border-green-400 bg-black text-green-400 rounded-md font-mono text-sm shadow-inner hover:bg-green-950 hover:text-white transition duration-150"
+              >
+                <img
+                  src={skill.icon}
+                  alt={skill.name}
+                  className="w-4 h-4 object-contain filter brightness-0 invert"
+                />
+                <span>{skill.name}</span>
+              </div>
+            ))}
+          </div>
         </section>
 
-        <section
+        {/* <section
           ref={(el) => {
             sectionsRef.current["Certificates"] = el;
           }}
@@ -251,6 +283,88 @@ export default function CmdWindowPortfolio() {
             <li>AWS Certified Solutions Architect</li>
             <li>Full-Stack Developer Bootcamp</li>
           </ul>
+        </section> */}
+        <section
+          ref={(el) => {
+            sectionsRef.current["Connect"] = el;
+          }}
+          data-section="Connect"
+          className="min-h-[80vh] border-b border-zinc-700 scroll-mt-32"
+        >
+          {renderPromptSticky("connect --network")}
+          <h2 className="text-2xl mb-4">Connect with Me</h2>
+
+          <div className="flex space-x-6 text-white text-xl mb-8">
+            <a
+              href="https://twitter.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              🐦
+            </a>
+            <a
+              href="https://linkedin.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              🔗
+            </a>
+            <a
+              href="https://instagram.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              📸
+            </a>
+            <a href="mailto:youremail@example.com">✉️</a>
+          </div>
+
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              const data = {
+                name: e.currentTarget.name.value,
+                email: e.currentTarget.email.value,
+                phone: e.currentTarget.phone.value,
+                message: e.currentTarget.message.value,
+              };
+              console.log("Form submitted:", data);
+              // notifyAuthor(data);
+            }}
+            className="space-y-4 max-w-md"
+          >
+            <input
+              name="name"
+              placeholder="Name"
+              required
+              className="w-full p-2 rounded bg-zinc-800 text-white border border-zinc-600"
+            />
+            <input
+              name="email"
+              type="email"
+              placeholder="Email"
+              required
+              className="w-full p-2 rounded bg-zinc-800 text-white border border-zinc-600"
+            />
+            <input
+              name="phone"
+              type="tel"
+              placeholder="Phone (optional)"
+              className="w-full p-2 rounded bg-zinc-800 text-white border border-zinc-600"
+            />
+            <textarea
+              name="message"
+              placeholder="Message"
+              required
+              className="w-full p-2 rounded bg-zinc-800 text-white border border-zinc-600"
+            ></textarea>
+            <button
+              type="submit"
+              className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
+            >
+              Submit
+            </button>
+          </form>
         </section>
       </div>
     </div>
