@@ -322,11 +322,12 @@ export default function CmdWindowPortfolio() {
           <form
             onSubmit={(e) => {
               e.preventDefault();
+              const form = e.currentTarget as HTMLFormElement;
               const data = {
-                name: e.currentTarget.name.value,
-                email: e.currentTarget.email.value,
-                phone: e.currentTarget.phone.value,
-                message: e.currentTarget.message.value,
+                name: (form.elements.namedItem("name") as HTMLInputElement)?.value || "",
+                email: (form.elements.namedItem("email") as HTMLInputElement)?.value || "",
+                phone: (form.elements.namedItem("phone") as HTMLInputElement)?.value || "",
+                message: (form.elements.namedItem("message") as HTMLTextAreaElement)?.value || "",
               };
               console.log("Form submitted:", data);
               // notifyAuthor(data);
