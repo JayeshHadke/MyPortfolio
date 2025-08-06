@@ -1,5 +1,6 @@
 import sectionData from "@/services/getSectionData";
 import { getTotalDuration } from "@/services/getTotalYears";
+import notifyAuthor from "@/services/notify";
 import { useEffect, useRef, useState } from "react";
 const tabs = [
   "Intro",
@@ -330,7 +331,7 @@ export default function CmdWindowPortfolio() {
                 message: (form.elements.namedItem("message") as HTMLTextAreaElement)?.value || "",
               };
               console.log("Form submitted:", data);
-              // notifyAuthor(data);
+              notifyAuthor(data);
             }}
             className="space-y-4 max-w-md"
           >
