@@ -24,6 +24,53 @@
       "description": "• Developed a gesture detection algorithm using ML Kit for an Android app integrating with Unity, enhancing user interaction.\n• Gained experience in the Software Development Life Cycle (SDLC), project management, and collaboration using GitHub for version control."
     }
   ],
+  "projects": [
+    {
+      "name": "Gym Management System",
+      "description": "Developed a backend service for a gym management system using .NET Core. The service supports user authentication, membership management, and class scheduling. It includes a RESTful API for integration with the frontend.",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/6/68/Strategy_Concept.svg",
+      "repo": "https://github.com/JayeshHadke/ApexGymService",
+      "status": "In Progress"
+    },
+    {
+      "name": "Youtube Backend Service",
+      "description": "Developed a backend service for a YouTube-like application using Node.js and Express. Using MongoDB for data storage, the service supports user authentication, video uploads, and comments. The project includes a RESTful API for seamless integration with the frontend.",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/0/0b/YouTube_2024_%28white_text%29.svg",
+      "repo": "https://github.com/JayeshHadke/Youtube",
+      "status": "Completed"
+    },
+    {
+      "name": "Kingdoms Kid Streaming App",
+      "description": "Developed a cross-platform streaming app using Flutter, allowing users to stream videos from YouTube and download resources. The app features a user-friendly interface and integrates with YouTube's API for video playback.",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/a/a4/Android_2023_3D_logo_and_wordmark.svg",
+      "repo": "https://github.com/JayeshHadke/Kingdoms_Kid",
+      "status": "Completed"
+    }
+    ,
+    {
+      "name": "Online Shopping Cross Platform App",
+      "description": "Developed a cross-platform shopping app using Flutter, allowing users to browse products, add them to a cart, and make purchases. The app features a user-friendly interface and integrates with payment gateways for secure transactions.",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/a/aa/Shopping_online_with_bank_card.jpg",
+      "repo": "https://github.com/JayeshHadke/Mi-Hackathon",
+      "status": "Completed"
+    }
+    ,
+    {
+      "name": "Alarm App (Android)",
+      "description": "Developed an Android app that functions as an alarm clock, allowing users to set, edit, and delete alarms. The app features a user-friendly interface and integrates with the device's native alarm functionality.",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/8/8b/2010-07-20_Black_windup_alarm_clock_face.jpg",
+      "repo": "https://github.com/JayeshHadke/Alarm-App",
+      "status": "Completed"
+    },
+    {
+      "name": "Automated Green House",
+      "description": "This was IOT based project which was developed using Arduino and ESP32. It is used to monitor the temperature, humidity, soil moisture and light intensity of the green house. It also has a feature to control the water pump and fan based on the readings.",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/c/cb/Internet_of_Things_using_NEST.png",
+      "repo": "https://github.com/JayeshHadke/Automated-Green-House",
+      "status": "Completed"
+    }
+  ],
+
   "skills": [
     { "name": "C", "icon": "/icons/c.svg" },
     { "name": "C++", "icon": "/icons/cplusplus.svg" },
@@ -53,5 +100,27 @@
     { "name": "MongoDB", "icon": "/icons/mongodb.svg" },
     { "name": "SQL", "icon": "/icons/mysql.svg" },
     { "name": "NPM", "icon": "/icons/npm.svg" }
+  ],
+  "connectMe": [
+    {
+      "name": "LinkedIn",
+      "icon": "/icons/linkedin.svg",
+      "url": "https://www.linkedin.com/in/jayesh-hadke-jrh"
+    },
+    {
+      "name": "GitHub",
+      "icon": "/icons/github-color.svg",
+      "url": "https://github.com/JayeshHadke"
+    },
+    {
+      "name": "Instagram",
+      "icon": "/icons/instagram.svg",
+      "url": "https://www.instagram.com/jayesh_hadke_"
+    },
+    {
+      "name": "Gmail",
+      "icon": "/icons/gmail.svg",
+      "url": "mailto:jayeshhadkejrh@gmail.com"
+    }
   ]
 }
