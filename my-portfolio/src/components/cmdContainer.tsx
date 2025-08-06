@@ -39,7 +39,15 @@ export default function CmdWindowPortfolio() {
   const [totalExperience, setTotalExperience] = useState<string>("");
 
   // projects details
-  
+  type projectType = {
+    name: string;
+    description: string;
+    image: string;
+    repo: string;
+    status: string;
+  };
+  const [projectsDetails, setProjectsDetails] = useState<projectType[]>([]);
+
   // skills details
   type skillType = {
     name: string;
@@ -47,10 +55,17 @@ export default function CmdWindowPortfolio() {
   };
   const [skillsDetails, setSkillsDetails] = useState<skillType[]>([]);
 
+  // connect details
+  type connectMeType = {
+    name: string;
+    link: string;
+    icon: string;
+  };
+  const [connectMeDetails, setConnectMeDetails] = useState<connectMeType[]>([]);
+
   const [activeTab, setActiveTab] = useState("Intro");
   const sectionsRef = useRef<Record<string, HTMLElement | null>>({});
   useEffect(() => {
-    
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -89,12 +104,40 @@ export default function CmdWindowPortfolio() {
     setTotalExperience(totalExperienceDuration);
     setExperienceDetails({ companies });
 
+    // projects details
+    const projects = (
+      sectionData["data"]["projects"] as {
+        name: string;
+        description: string;
+        image: string;
+        repo: string;
+        status: string;
+      }[]
+    ).map((project) => ({
+      name: project.name,
+      description: project.description,
+      image: project.image,
+      repo: project.repo,
+      status: project.status,
+    }));
+    setProjectsDetails(projects);
+
     // skills details
     const skills = sectionData["data"]["skills"].map((skill: skillType) => ({
       name: skill.name,
       icon: skill.icon,
     }));
     setSkillsDetails(skills);
+
+    // connect details
+    const connectMe = sectionData["data"]["connectMe"].map(
+      (connect: { name: string; icon: string; url: string }) => ({
+        name: connect.name,
+        icon: connect.icon,
+        link: connect.url,
+      })
+    );
+    setConnectMeDetails(connectMe);
 
     Object.values(sectionsRef.current).forEach((el) => {
       if (el) observer.observe(el);
@@ -167,7 +210,7 @@ export default function CmdWindowPortfolio() {
             sectionsRef.current["Intro"] = el;
           }}
           data-section="Intro"
-          className="min-h-[80vh] flex flex-col border-b border-zinc-700 scroll-mt-32"
+          className="min-h-[80vh] flex flex-col border-b border-zinc-700 scroll-mt-32 pb-10"
         >
           {renderPromptSticky("systeminfo --profile --overview")}
           <div className="flex flex-1 items-center justify-between mr-[4vw]">
@@ -177,12 +220,12 @@ export default function CmdWindowPortfolio() {
                 {overviewDetails?.description}
               </p>
             </div>
-            {/* image is not responsive for mobile view and desktop view */}
-            <div className="hidden md:block">
+            {/* image is not responsive for mobile view and desktop view also vertically it should be responsive */}
+            <div className="hidden md:block w-[25vw] h-[55vh] rounded border border-green-400 object-cover overflow-hidden">
               <img
                 src="./profilePhoto.png"
                 alt="Your face"
-                className="w-[25vw] h-[55vh] rounded border border-green-400 object-cover"
+                className="w-full h-full rounded border border-green-400 object-cover"
               />
             </div>
           </div>
@@ -193,7 +236,7 @@ export default function CmdWindowPortfolio() {
             sectionsRef.current["Experience"] = el;
           }}
           data-section="Experience"
-          className="min-h-[80vh] border-b border-zinc-700 scroll-mt-32"
+          className="min-h-[80vh] border-b border-zinc-700 scroll-mt-32 pb-10"
         >
           {renderPromptSticky("systeminfo --profile --experience")}
           <h2 className="text-2xl mb-4">
@@ -228,23 +271,36 @@ export default function CmdWindowPortfolio() {
             sectionsRef.current["Projects"] = el;
           }}
           data-section="Projects"
-          className="min-h-[80vh] border-b border-zinc-700 scroll-mt-32"
+          className="min-h-[80vh] border-b border-zinc-700 scroll-mt-32 pb-10"
         >
           {renderPromptSticky("systeminfo --profile --projects")}
           <h2 className="text-2xl mb-4">Projects</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-zinc-800 border border-zinc-600 p-4 rounded">
-              <img
-                src="/project1.jpg"
-                alt="Project 1"
-                className="w-full h-32 object-cover rounded"
-              />
-              <h3 className="mt-2 text-lg">Project One</h3>
-              <p className="text-sm">A cool thing I built with React.</p>
-              <a href="#" className="text-blue-400 underline text-sm">
-                View Repo
-              </a>
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+            {projectsDetails.map((project) => (
+              <div
+                key={project.name}
+                className="bg-zinc-800 p-4 rounded shadow-lg hover:shadow-xl transition-shadow duration-150"
+              >
+                <img
+                  src={project.image == "" ? "./icons/project.svg" : project.image}
+                  alt={project.name}
+                  className="w-full h-32 object-cover rounded mb-4"
+                />
+                <h3 className="text-lg font-semibold mb-2">{project.name} <span className="text-sm text-zinc-400">({project.status})</span></h3>
+                <p className="text-sm text-zinc-200 mb-4">
+                  {project.description}
+                </p>
+
+                <a
+                  href={project.repo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-400 hover:underline"
+                >
+                  View Repository
+                </a>
+              </div>
+            ))}
           </div>
         </section>
 
@@ -253,7 +309,7 @@ export default function CmdWindowPortfolio() {
             sectionsRef.current["Skills"] = el;
           }}
           data-section="Skills"
-          className="min-h-[80vh] border-b border-zinc-700 scroll-mt-32"
+          className="min-h-[80vh] border-b border-zinc-700 scroll-mt-32 pb-10"
         >
           {renderPromptSticky("systeminfo --profile --skills")}
           <h2 className="text-2xl mb-4">Skills</h2>
@@ -274,53 +330,31 @@ export default function CmdWindowPortfolio() {
           </div>
         </section>
 
-        {/* <section
-          ref={(el) => {
-            sectionsRef.current["Certificates"] = el;
-          }}
-          data-section="Certificates"
-          className="min-h-[80vh] border-b border-zinc-700 scroll-mt-32"
-        >
-          {renderPromptSticky("certificates")}
-          <h2 className="text-2xl mb-4">Certificates</h2>
-          <ul className="list-disc ml-5 space-y-2">
-            <li>AWS Certified Solutions Architect</li>
-            <li>Full-Stack Developer Bootcamp</li>
-          </ul>
-        </section> */}
         <section
           ref={(el) => {
             sectionsRef.current["Connect"] = el;
           }}
           data-section="Connect"
-          className="min-h-[80vh] border-b border-zinc-700 scroll-mt-32"
+          className="min-h-[80vh] border-b border-zinc-700 scroll-mt-32 pb-10"
         >
           {renderPromptSticky("connect --network")}
           <h2 className="text-2xl mb-4">Connect with Me</h2>
 
           <div className="flex space-x-6 text-white text-xl mb-8">
-            <a
-              href="https://twitter.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              🐦
-            </a>
-            <a
-              href="https://linkedin.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              🔗
-            </a>
-            <a
-              href="https://instagram.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              📸
-            </a>
-            <a href="mailto:youremail@example.com">✉️</a>
+            {connectMeDetails.map((connect) => (
+              <a
+                key={connect.name}
+                href={connect.link}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src={connect.icon}
+                  alt={connect.name}
+                  className="w-8 h-8"
+                />
+              </a>
+            ))}
           </div>
 
           <form
@@ -328,10 +362,18 @@ export default function CmdWindowPortfolio() {
               e.preventDefault();
               const form = e.currentTarget as HTMLFormElement;
               const data = {
-                name: (form.elements.namedItem("name") as HTMLInputElement)?.value || "",
-                email: (form.elements.namedItem("email") as HTMLInputElement)?.value || "",
-                phone: (form.elements.namedItem("phone") as HTMLInputElement)?.value || "",
-                message: (form.elements.namedItem("message") as HTMLTextAreaElement)?.value || "",
+                name:
+                  (form.elements.namedItem("name") as HTMLInputElement)
+                    ?.value || "",
+                email:
+                  (form.elements.namedItem("email") as HTMLInputElement)
+                    ?.value || "",
+                phone:
+                  (form.elements.namedItem("phone") as HTMLInputElement)
+                    ?.value || "",
+                message:
+                  (form.elements.namedItem("message") as HTMLTextAreaElement)
+                    ?.value || "",
               };
               console.log("Form submitted:", data);
               notifyAuthor(data);
