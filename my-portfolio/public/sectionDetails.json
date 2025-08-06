@@ -25,29 +25,33 @@
     }
   ],
   "skills": [
-    { "name": "ReactJS", "icon": "/icons/reactjs.svg" },
-    { "name": "NextJS", "icon": "/icons/nextjs.svg" },
+    { "name": "C", "icon": "/icons/c.svg" },
+    { "name": "C++", "icon": "/icons/cplusplus.svg" },
+    { "name": "C#", "icon": "/icons/csharp.svg" },
+    { "name": "JavaScript", "icon": "/icons/javascript.svg" },
     { "name": "TypeScript", "icon": "/icons/typescript.svg" },
-    { "name": "Tailwind CSS", "icon": "/icons/tailwind.svg" },
-    { "name": "Motion", "icon": "/icons/motion.svg" },
-    { "name": "Sanity", "icon": "/icons/sanity.svg" },
-    { "name": "Contentful", "icon": "/icons/contentful.svg" },
-    { "name": "NodeJS", "icon": "/icons/nodejs.svg" },
-    { "name": "ExpressJS", "icon": "/icons/express.svg" },
-    { "name": "PostgreSQL", "icon": "/icons/postgresql.svg" },
-    { "name": "MongoDB", "icon": "/icons/mongodb.svg" },
-    { "name": "Prisma", "icon": "/icons/prisma.svg" },
-    { "name": "Zustand", "icon": "/icons/zustand.svg" },
-    { "name": "Zod", "icon": "/icons/zod.svg" },
-    { "name": "pnpm", "icon": "/icons/pnpm.svg" },
-    { "name": "Bun", "icon": "/icons/bun.svg" },
+    { "name": "Java", "icon": "/icons/java.svg" },
+    { "name": "Python", "icon": "/icons/python.svg" },
+    { "name": "Kotlin", "icon": "/icons/kotlin.svg" },
+    { "name": ".NET", "icon": "/icons/dotnet.svg" },
+
+    { "name": "ReactJS", "icon": "/icons/reactjs.svg" },
+    { "name": "NextJS", "icon": "/icons/nextdotjs.svg" },
+    { "name": "ExpressJS", "icon": "/icons/expressdotcom.svg" },
     { "name": "Git", "icon": "/icons/git.svg" },
     { "name": "GitHub", "icon": "/icons/github.svg" },
-    { "name": "Vercel", "icon": "/icons/vercel.svg" },
-    { "name": "AWS", "icon": "/icons/aws.svg" },
+
+    { "name": "HTML", "icon": "/icons/html5.svg" },
+    { "name": "CSS", "icon": "/icons/css.svg" },
     { "name": "Docker", "icon": "/icons/docker.svg" },
-    { "name": "Expo", "icon": "/icons/expo.svg" },
-    { "name": "Clerk", "icon": "/icons/clerk.svg" },
-    { "name": "Linux", "icon": "/icons/linux.svg" }
+    { "name": "Kibana", "icon": "/icons/kibana.svg" },
+
+    { "name": "LangChain", "icon": "/icons/langchain.svg" },
+    { "name": "LangGraph", "icon": "/icons/langgraph.svg" },
+
+    { "name": "Linux", "icon": "/icons/linux.svg" },
+    { "name": "MongoDB", "icon": "/icons/mongodb.svg" },
+    { "name": "SQL", "icon": "/icons/mysql.svg" },
+    { "name": "NPM", "icon": "/icons/npm.svg" }
   ]
 }
