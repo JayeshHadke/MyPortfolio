@@ -17,6 +17,7 @@ export default function CmdWindowPortfolio() {
     title: string;
     description: string;
     image: string;
+    cvURL: string;
   };
   const [overviewDetails, setOverviewDetails] = useState<overviewType | null>(
     null
@@ -78,17 +79,22 @@ export default function CmdWindowPortfolio() {
       { threshold: 0.5 }
     );
 
+    // Null-safe access for sectionData
+    const data = sectionData?.["data"];
+
     // overview details
-    setOverviewDetails(sectionData["data"]["overview"]);
+    setOverviewDetails(data?.["overview"] ?? null);
 
     // experience details
     const companies = (
-      sectionData["data"]["experience"] as {
-        company: string;
-        designation: string;
-        duration: string;
-        description: string;
-      }[]
+      (data?.["experience"] as
+        | {
+            company: string;
+            designation: string;
+            duration: string;
+            description: string;
+          }[]
+        | undefined) ?? []
     ).map((company) => ({
       company: company.company,
       designation: company.designation,
@@ -106,13 +112,15 @@ export default function CmdWindowPortfolio() {
 
     // projects details
     const projects = (
-      sectionData["data"]["projects"] as {
-        name: string;
-        description: string;
-        image: string;
-        repo: string;
-        status: string;
-      }[]
+      (data?.["projects"] as
+        | {
+            name: string;
+            description: string;
+            image: string;
+            repo: string;
+            status: string;
+          }[]
+        | undefined) ?? []
     ).map((project) => ({
       name: project.name,
       description: project.description,
@@ -123,20 +131,22 @@ export default function CmdWindowPortfolio() {
     setProjectsDetails(projects);
 
     // skills details
-    const skills = sectionData["data"]["skills"].map((skill: skillType) => ({
-      name: skill.name,
-      icon: skill.icon,
-    }));
+    const skills =
+      (data?.["skills"] as skillType[] | undefined)?.map((skill) => ({
+        name: skill.name,
+        icon: skill.icon,
+      })) ?? [];
     setSkillsDetails(skills);
 
     // connect details
-    const connectMe = sectionData["data"]["connectMe"].map(
-      (connect: { name: string; icon: string; url: string }) => ({
+    const connectMe =
+      (data?.["connectMe"] as
+        | { name: string; icon: string; url: string }[]
+        | undefined)?.map((connect) => ({
         name: connect.name,
         icon: connect.icon,
         link: connect.url,
-      })
-    );
+      })) ?? [];
     setConnectMeDetails(connectMe);
 
     Object.values(sectionsRef.current).forEach((el) => {
@@ -150,7 +160,7 @@ export default function CmdWindowPortfolio() {
     if (tab === "Download CV") {
       // download CV from a uri
       const cvUrl =
-        "https://github.com/JayeshHadke/MyPortfolio/raw/refs/heads/master/my-portfolio/public/Jayesh_Hadke_CV.pdf";
+        overviewDetails?.cvURL || "";
       const link = document.createElement("a");
       link.href = cvUrl;
       link.download = "JayeshCV.pdf";

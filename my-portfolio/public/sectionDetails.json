@@ -2,7 +2,8 @@
   "overview": {
     "title": "Hi, I am Jayesh Hadke",
     "description": "I am a Software Engineer with a passion for building innovative solutions. I specialize in full-stack development, focusing on creating efficient and scalable applications. My expertise includes ASP.NET Core, Node.js, and Android development, with a strong emphasis on user experience and performance optimization. I am also working on AI-related projects, exploring the integration of machine learning and natural language processing into applications.",
-    "image": ""
+    "image": "",
+    "cvURL": "https://github.com/JayeshHadke/MyPortfolio/raw/refs/heads/master/my-portfolio/public/Jayesh_Hadke_CV.pdf"
   },
   "experience": [
     {
@@ -45,16 +46,14 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/a/a4/Android_2023_3D_logo_and_wordmark.svg",
       "repo": "https://github.com/JayeshHadke/Kingdoms_Kid",
       "status": "Completed"
-    }
-    ,
+    },
     {
       "name": "Online Shopping Cross Platform App",
       "description": "Developed a cross-platform shopping app using Flutter, allowing users to browse products, add them to a cart, and make purchases. The app features a user-friendly interface and integrates with payment gateways for secure transactions.",
       "image": "https://upload.wikimedia.org/wikipedia/commons/a/aa/Shopping_online_with_bank_card.jpg",
       "repo": "https://github.com/JayeshHadke/Mi-Hackathon",
       "status": "Completed"
-    }
-    ,
+    },
     {
       "name": "Alarm App (Android)",
       "description": "Developed an Android app that functions as an alarm clock, allowing users to set, edit, and delete alarms. The app features a user-friendly interface and integrates with the device's native alarm functionality.",
@@ -80,6 +79,8 @@
     { "name": "Java", "icon": "/icons/java.svg" },
     { "name": "Python", "icon": "/icons/python.svg" },
     { "name": "Kotlin", "icon": "/icons/kotlin.svg" },
+    { "name": "Flutter", "icon": "/icons/flutter.svg" },
+    { "name": "Android", "icon": "/icons/android.svg" },
     { "name": ".NET", "icon": "/icons/dotnet.svg" },
 
     { "name": "ReactJS", "icon": "/icons/reactjs.svg" },
@@ -98,8 +99,7 @@
 
     { "name": "Linux", "icon": "/icons/linux.svg" },
     { "name": "MongoDB", "icon": "/icons/mongodb.svg" },
-    { "name": "SQL", "icon": "/icons/mysql.svg" },
-    { "name": "NPM", "icon": "/icons/npm.svg" }
+    { "name": "SQL", "icon": "/icons/mysql.svg" }
   ],
   "connectMe": [
     {
