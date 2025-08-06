@@ -177,11 +177,14 @@ export default function CmdWindowPortfolio() {
                 {overviewDetails?.description}
               </p>
             </div>
-            <img
-              src="./profilePhoto.png"
-              alt="Your face"
-              className="w-[25vw] h-[55vh] rounded border border-green-400 object-cover"
-            />
+            {/* image is not responsive for mobile view and desktop view */}
+            <div className="hidden md:block">
+              <img
+                src="./profilePhoto.png"
+                alt="Your face"
+                className="w-[25vw] h-[55vh] rounded border border-green-400 object-cover"
+              />
+            </div>
           </div>
         </section>
 
