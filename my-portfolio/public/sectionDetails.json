@@ -99,7 +99,8 @@
 
     { "name": "Linux", "icon": "/icons/linux.svg" },
     { "name": "MongoDB", "icon": "/icons/mongodb.svg" },
-    { "name": "SQL", "icon": "/icons/mysql.svg" }
+    { "name": "SQL", "icon": "/icons/mysql.svg" },
+    { "name": "Vercel", "icon": "https://upload.wikimedia.org/wikipedia/commons/9/9a/Vercel_logo_2025.svg" }
   ],
   "connectMe": [
     {
