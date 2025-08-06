@@ -140,9 +140,11 @@ export default function CmdWindowPortfolio() {
 
     // connect details
     const connectMe =
-      (data?.["connectMe"] as
-        | { name: string; icon: string; url: string }[]
-        | undefined)?.map((connect) => ({
+      (
+        data?.["connectMe"] as
+          | { name: string; icon: string; url: string }[]
+          | undefined
+      )?.map((connect) => ({
         name: connect.name,
         icon: connect.icon,
         link: connect.url,
@@ -159,8 +161,7 @@ export default function CmdWindowPortfolio() {
   const scrollTo = (tab: string) => {
     if (tab === "Download CV") {
       // download CV from a uri
-      const cvUrl =
-        overviewDetails?.cvURL || "";
+      const cvUrl = overviewDetails?.cvURL || "";
       const link = document.createElement("a");
       link.href = cvUrl;
       link.download = "JayeshCV.pdf";
@@ -231,11 +232,11 @@ export default function CmdWindowPortfolio() {
               </p>
             </div>
             {/* image is not responsive for mobile view and desktop view also vertically it should be responsive */}
-            <div className="hidden md:block w-[25vw] h-[55vh] rounded border border-green-400 object-cover overflow-hidden">
+            <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 h-64 sm:h-72 md:h-80 lg:h-[55vh] rounded border border-green-400 overflow-hidden">
               <img
                 src="./profilePhoto.png"
                 alt="Your face"
-                className="w-full h-full rounded border border-green-400 object-cover"
+                className="w-full h-full object-cover"
               />
             </div>
           </div>
@@ -292,11 +293,18 @@ export default function CmdWindowPortfolio() {
                 className="bg-zinc-800 p-4 rounded shadow-lg hover:shadow-xl transition-shadow duration-150"
               >
                 <img
-                  src={project.image == "" ? "./icons/project.svg" : project.image}
+                  src={
+                    project.image == "" ? "./icons/project.svg" : project.image
+                  }
                   alt={project.name}
                   className="w-full h-32 object-cover rounded mb-4"
                 />
-                <h3 className="text-lg font-semibold mb-2">{project.name} <span className="text-sm text-zinc-400">({project.status})</span></h3>
+                <h3 className="text-lg font-semibold mb-2">
+                  {project.name}{" "}
+                  <span className="text-sm text-zinc-400">
+                    ({project.status})
+                  </span>
+                </h3>
                 <p className="text-sm text-zinc-200 mb-4">
                   {project.description}
                 </p>
