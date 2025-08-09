@@ -27,6 +27,13 @@
   ],
   "projects": [
     {
+      "name": "Arithematic AI Agent",
+      "description": "Developed an AI agent that can solve arithmetic problems using LangGraph and LangChain. The agent utilizes the Cohere LLM model for natural language understanding and processing, enabling it to interpret and solve mathematical expressions effectively. The project also incorporates LangSmith for monitoring and debugging the agent's performance. [Note: This project is case study for understanding the working of LangGraph and LangChain, along with langsmith for monitoring]",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/3/3f/IntelligentAgent-SimpleReflex.png",
+      "repo": "https://github.com/JayeshHadke/first-ai-agent-using-langgraph",
+      "status": "Completed"
+    },
+    {
       "name": "Gym Management System",
       "description": "Developed a backend service for a gym management system using .NET Core. The service supports user authentication, membership management, and class scheduling. It includes a RESTful API for integration with the frontend.",
       "image": "https://upload.wikimedia.org/wikipedia/commons/6/68/Strategy_Concept.svg",
@@ -100,7 +107,10 @@
     { "name": "Linux", "icon": "/icons/linux.svg" },
     { "name": "MongoDB", "icon": "/icons/mongodb.svg" },
     { "name": "SQL", "icon": "/icons/mysql.svg" },
-    { "name": "Vercel", "icon": "https://upload.wikimedia.org/wikipedia/commons/9/9a/Vercel_logo_2025.svg" }
+    {
+      "name": "Vercel",
+      "icon": "https://upload.wikimedia.org/wikipedia/commons/9/9a/Vercel_logo_2025.svg"
+    }
   ],
   "connectMe": [
     {
