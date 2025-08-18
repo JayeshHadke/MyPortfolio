@@ -27,7 +27,14 @@
   ],
   "projects": [
     {
-      "name": "Arithematic AI Agent",
+      "name": "AI Agent From Scratch",
+      "description": "A minimal implementation of an AI agent that demonstrates how to build a conversational AI system without using complex frameworks. This project showcases basic agent architecture using OpenAI's API through OpenRouter.",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/a/af/OpenAI_logo_2025_%28wordmark%29.svg",
+      "repo": "https://github.com/JayeshHadke/ai-agent-from-scratch-without-any-framework",
+      "status": "Completed"
+    },
+    {
+      "name": "Arithematic AI Agent Using LangGraph",
       "description": "Developed an AI agent that can solve arithmetic problems using LangGraph and LangChain. The agent utilizes the Cohere LLM model for natural language understanding and processing, enabling it to interpret and solve mathematical expressions effectively. The project also incorporates LangSmith for monitoring and debugging the agent's performance. [Note: This project is case study for understanding the working of LangGraph and LangChain, along with langsmith for monitoring]",
       "image": "https://upload.wikimedia.org/wikipedia/commons/3/3f/IntelligentAgent-SimpleReflex.png",
       "repo": "https://github.com/JayeshHadke/first-ai-agent-using-langgraph",
