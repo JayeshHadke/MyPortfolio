@@ -36,7 +36,7 @@
     {
       "name": "Arithematic AI Agent Using LangGraph",
       "description": "Developed an AI agent that can solve arithmetic problems using LangGraph and LangChain. The agent utilizes the Cohere LLM model for natural language understanding and processing, enabling it to interpret and solve mathematical expressions effectively. The project also incorporates LangSmith for monitoring and debugging the agent's performance. [Note: This project is case study for understanding the working of LangGraph and LangChain, along with langsmith for monitoring]",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/3/3f/IntelligentAgent-SimpleReflex.png",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/6/60/LangChain_Logo.svg",
       "repo": "https://github.com/JayeshHadke/first-ai-agent-using-langgraph",
       "status": "Completed"
     },
