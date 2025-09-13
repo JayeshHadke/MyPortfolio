@@ -63,7 +63,7 @@
     },
     {
       "name": "Online Shopping Cross Platform App",
-      "description": "Developed a cross-platform shopping app using Flutter, allowing users to browse products, add them to a cart, and make purchases. The app features a user-friendly interface and integrates with payment gateways for secure transactions.",
+      "description": "Developed a cross-platform shopping app using Flutter, allowing users to browse products, add them to a cart, and make purchases. The app features a user-friendly interface.",
       "image": "https://upload.wikimedia.org/wikipedia/commons/a/aa/Shopping_online_with_bank_card.jpg",
       "repo": "https://github.com/JayeshHadke/Mi-Hackathon",
       "status": "Completed"
